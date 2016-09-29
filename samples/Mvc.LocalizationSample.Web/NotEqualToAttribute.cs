@@ -1,7 +1,6 @@
 ﻿// Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-using System;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 
@@ -9,6 +8,8 @@ namespace Mvc.LocalizationSample.Web
 {
     public class NotEqualToAttribute : ValidationAttribute
     {
+        public object Value { get; }
+
         public NotEqualToAttribute(object value)
         {
             Value = value;
@@ -16,14 +17,12 @@ namespace Mvc.LocalizationSample.Web
 
         public override string FormatErrorMessage(string name)
         {
-            return string.Format(CultureInfo.CurrentCulture, ErrorMessageString, name, Convert.ToString(Value));
+            return string.Format(CultureInfo.CurrentCulture, ErrorMessageString, name, Value.ToString());
         }
 
         public override bool IsValid(object value)
         {
-            return !string.Equals(Convert.ToString(Value), Convert.ToString(value), StringComparison.CurrentCultureIgnoreCase);
+            return !Value.Equals(value);
         }
-
-        public object Value { get; set; }
     }
 }

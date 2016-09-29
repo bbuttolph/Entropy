@@ -8,7 +8,7 @@ using Microsoft.Extensions.Localization;
 
 namespace Mvc.LocalizationSample.Web
 {
-    internal class NotEqualToAttributeAdapter : AttributeAdapterBase<NotEqualToAttribute>
+    public class NotEqualToAttributeAdapter : AttributeAdapterBase<NotEqualToAttribute>
     {
         public NotEqualToAttributeAdapter(NotEqualToAttribute attribute, IStringLocalizer stringLocalizer)
             : base(attribute, stringLocalizer)

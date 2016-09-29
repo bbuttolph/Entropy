@@ -10,11 +10,16 @@ namespace Mvc.LocalizationSample.Web
 {
     public class CustomValidationAttributeAdapterProvider : IValidationAttributeAdapterProvider
     {
+        private IValidationAttributeAdapterProvider _defaultProvider;
+
+        public CustomValidationAttributeAdapterProvider()
+        {
+            _defaultProvider = new ValidationAttributeAdapterProvider();
+        }
+
         public IAttributeAdapter GetAttributeAdapter(ValidationAttribute attribute, IStringLocalizer stringLocalizer)
         {
-            var defaultProvider = new ValidationAttributeAdapterProvider();
-
-            var adapter = defaultProvider.GetAttributeAdapter(attribute, stringLocalizer);
+            var adapter = _defaultProvider.GetAttributeAdapter(attribute, stringLocalizer);
 
             if (adapter == null)
             {
