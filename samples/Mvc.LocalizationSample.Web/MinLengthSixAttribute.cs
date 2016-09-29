@@ -6,23 +6,28 @@ using System.Globalization;
 
 namespace Mvc.LocalizationSample.Web
 {
-    public class NotEqualToAttribute : ValidationAttribute
+    public class MinLengthSixAttribute : ValidationAttribute
     {
-        public object Value { get; }
-
-        public NotEqualToAttribute(object value)
+        public MinLengthSixAttribute()
         {
-            Value = value;
         }
 
         public override string FormatErrorMessage(string name)
         {
-            return string.Format(CultureInfo.CurrentCulture, ErrorMessageString, name, Value.ToString());
+            return string.Format(CultureInfo.CurrentCulture, ErrorMessageString, name);
         }
 
         public override bool IsValid(object value)
         {
-            return !Value.Equals(value);
+            var stringValue = value as string;
+            if (stringValue == null)
+            {
+                return false;
+            }
+            else
+            {
+                return stringValue.Length >= 6;
+            }
         }
     }
 }

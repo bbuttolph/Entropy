@@ -122,8 +122,8 @@ mypartial
 
 <div class=""editor-label""><label for=""Product_ProductName"">ProductName</label></div>
 <div class=""editor-field""><input class=""input-validation-error text-box single-line"" data-val=""true"" data-val-required=""Nom du produit est invalide"" id=""Product_ProductName"" name=""Product.ProductName"" type=""text"" value="""" /> <span class=""field-validation-error"" data-valmsg-for=""Product.ProductName"" data-valmsg-replace=""true"">Nom du produit est invalide</span></div>
-<div class=""editor-label""><label for=""Product_Inventory"">Inventory</label></div>
-<div class=""editor-field""><input class=""input-validation-error text-box single-line"" data-val=""true"" data-val-required=""The Inventory field is required."" id=""Product_Inventory"" name=""Product.Inventory"" type=""number"" value=""0"" /> <span class=""field-validation-error"" data-valmsg-for=""Product.Inventory"" data-valmsg-replace=""true"">French inventory can&#x27;t be equal to Inventory</span></div>";
+<div class=""editor-label""><label for=""Product_ProductDescription"">ProductDescription</label></div>
+<div class=""editor-field""><input class=""input-validation-error text-box single-line"" data-val=""true"" data-val-minlength=""description doit &#xEA;tre d&#x27;au moins 6 caract&#xE8;res"" data-val-minlength-min=""6"" id=""Product_ProductDescription"" name=""Product.ProductDescription"" type=""text"" value="""" /> <span class=""field-validation-error"" data-valmsg-for=""Product.ProductDescription"" data-valmsg-replace=""true"">description doit &#xEA;tre d&#x27;au moins 6 caract&#xE8;res</span></div>";
 
             var cultureCookie = "c=fr|uic=fr";
             var request = new HttpRequestMessage(HttpMethod.Get, "http://localhost/Home/GetInvalidUser");

@@ -8,26 +8,26 @@ using Microsoft.Extensions.Localization;
 
 namespace Mvc.LocalizationSample.Web
 {
-    public class CustomValidationAttributeAdapterProvider : IValidationAttributeAdapterProvider
+    public class CustomValidationAttributeAdapterProvider
+        : ValidationAttributeAdapterProvider, IValidationAttributeAdapterProvider
     {
-        private IValidationAttributeAdapterProvider _defaultProvider;
-
         public CustomValidationAttributeAdapterProvider()
         {
-            _defaultProvider = new ValidationAttributeAdapterProvider();
         }
 
-        public IAttributeAdapter GetAttributeAdapter(ValidationAttribute attribute, IStringLocalizer stringLocalizer)
+        IAttributeAdapter IValidationAttributeAdapterProvider.GetAttributeAdapter(
+            ValidationAttribute attribute,
+            IStringLocalizer stringLocalizer)
         {
-            var adapter = _defaultProvider.GetAttributeAdapter(attribute, stringLocalizer);
+            var adapter = GetAttributeAdapter(attribute, stringLocalizer);
 
             if (adapter == null)
             {
                 var type = attribute.GetType();
 
-                if (type == typeof(NotEqualToAttribute))
+                if (type == typeof(MinLengthSixAttribute))
                 {
-                    adapter = new NotEqualToAttributeAdapter((NotEqualToAttribute)attribute, stringLocalizer);
+                    adapter = new MinLengthSixAttributeAdapter((MinLengthSixAttribute)attribute, stringLocalizer);
                 }
             }
 

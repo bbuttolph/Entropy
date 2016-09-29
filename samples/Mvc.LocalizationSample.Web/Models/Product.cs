@@ -10,7 +10,7 @@ namespace Mvc.LocalizationSample.Web.Models
         [Required(ErrorMessage = "ProductName")]
         public string ProductName { get; set; }
 
-        [NotEqualTo(0, ErrorMessage = "InventoryNotEqual")]
-        public int Inventory { get; set; }
+        [MinLengthSix(ErrorMessage = "MinLengthSix")]
+        public string ProductDescription { get; set; }
     }
 }

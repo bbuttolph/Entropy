@@ -8,9 +8,9 @@ using Microsoft.Extensions.Localization;
 
 namespace Mvc.LocalizationSample.Web
 {
-    public class NotEqualToAttributeAdapter : AttributeAdapterBase<NotEqualToAttribute>
+    public class MinLengthSixAttributeAdapter : AttributeAdapterBase<MinLengthSixAttribute>
     {
-        public NotEqualToAttributeAdapter(NotEqualToAttribute attribute, IStringLocalizer stringLocalizer)
+        public MinLengthSixAttributeAdapter(MinLengthSixAttribute attribute, IStringLocalizer stringLocalizer)
             : base(attribute, stringLocalizer)
         {
         }
@@ -23,6 +23,8 @@ namespace Mvc.LocalizationSample.Web
             }
 
             MergeAttribute(context.Attributes, "data-val", "true");
+            MergeAttribute(context.Attributes, "data-val-minlength", GetErrorMessage(context));
+            MergeAttribute(context.Attributes, "data-val-minlength-min", 6.ToString());
         }
 
         public override string GetErrorMessage(ModelValidationContextBase validationContext)
