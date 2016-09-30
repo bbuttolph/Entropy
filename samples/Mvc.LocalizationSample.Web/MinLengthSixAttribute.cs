@@ -24,10 +24,8 @@ namespace Mvc.LocalizationSample.Web
             {
                 return false;
             }
-            else
-            {
-                return stringValue.Length >= 6;
-            }
+
+            return stringValue.Length >= 6;
         }
     }
 }

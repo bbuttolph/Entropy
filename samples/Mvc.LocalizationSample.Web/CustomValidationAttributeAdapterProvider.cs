@@ -19,15 +19,14 @@ namespace Mvc.LocalizationSample.Web
             ValidationAttribute attribute,
             IStringLocalizer stringLocalizer)
         {
-            var adapter = GetAttributeAdapter(attribute, stringLocalizer);
+            var adapter = base.GetAttributeAdapter(attribute, stringLocalizer);
 
             if (adapter == null)
             {
-                var type = attribute.GetType();
-
-                if (type == typeof(MinLengthSixAttribute))
+                var minLengthSix = attribute as MinLengthSixAttribute;
+                if (minLengthSix != null)
                 {
-                    adapter = new MinLengthSixAttributeAdapter((MinLengthSixAttribute)attribute, stringLocalizer);
+                    adapter = new MinLengthSixAttributeAdapter(minLengthSix, stringLocalizer);
                 }
             }
 
